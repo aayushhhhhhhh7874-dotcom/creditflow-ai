@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreditFlow AI | Secure Finance Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="login-screen" id="loginScreen" aria-labelledby="loginTitle">
+    <div class="login-brand">
+      <span class="brand-mark">CF</span>
+      <span>CreditFlow AI</span>
+    </div>
+    <form class="login-panel" id="loginForm">
+      <p class="eyebrow">Secure Finance Login</p>
+      <h1 id="loginTitle">Sign in to the credit control workspace</h1>
+      <p class="login-copy">Role-based access, audit logging, and dry-run controls protect every generated follow-up.</p>
+
+      <label for="loginEmail">Work email</label>
+      <input id="loginEmail" type="email" autocomplete="username" value="finance.manager@creditflow.in" required>
+
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" value="Demo@2026!" required>
+
+      <div class="login-row">
+        <label class="check-row" for="rememberDevice">
+          <input id="rememberDevice" type="checkbox" checked>
+          <span>Trust this demo device</span>
+        </label>
+        <span class="mfa-chip">MFA verified</span>
+      </div>
+
+      <button class="button primary full" type="submit">Unlock Dashboard</button>
+      <p class="form-message" id="loginMessage" role="status"></p>
+
+      <div class="security-notes" aria-label="Login security features">
+        <span>Session timeout</span>
+        <span>Least privilege</span>
+        <span>Attempt lockout</span>
+      </div>
+    </form>
+  </section>
+
+  <div class="app-shell is-hidden" id="appShell">
+    <aside class="sidebar" aria-label="Workspace navigation">
+      <a class="brand" href="#overview" aria-label="CreditFlow AI overview">
+        <span class="brand-mark">CF</span>
+        <span>CreditFlow AI</span>
+      </a>
+      <nav>
+        <a href="#overview" class="active">Overview</a>
+        <a href="#queue">Invoice Queue</a>
+        <a href="#emails">Email Review</a>
+        <a href="#database">Database</a>
+        <a href="#security">Security</a>
+      </nav>
+      <div class="operator-card">
+        <span>Signed in as</span>
+        <strong>Finance Manager</strong>
+        <small>finance.manager@creditflow.in</small>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">AI Enablement Internship - Task 2</p>
+          <h2>Finance Credit Follow-Up Agent</h2>
+        </div>
+        <div class="topbar-actions">
+          <span class="status-pill">Dry-run mode</span>
+          <button class="button secondary" type="button" id="logoutButton">Sign Out</button>
+        </div>
+      </header>
+
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <h1>Professional credit control, with every email reviewed before send.</h1>
+          <p>
+            CreditFlow AI reads invoice records from CSV or SQLite, resolves the escalation stage, generates a tailored follow-up,
+            and records an auditable trail for finance review.
+          </p>
+          <div class="hero-actions">
+            <button class="button primary" type="button" id="runAgentButton">Run Dry-Run Agent</button>
+            <a class="button secondary" href="#emails">Review Emails</a>
+          </div>
+        </div>
+        <aside class="command-panel" aria-label="Agent run output">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <pre id="terminalOutput"></pre>
+        </aside>
+      </section>
+
+      <section class="metrics" aria-label="Agent summary metrics">
+        <article>
+          <span id="metricOverdue">0</span>
+          <strong>Overdue invoices</strong>
+          <small>Validated records ready for review</small>
+        </article>
+        <article>
+          <span id="metricEmails">0</span>
+          <strong>Dry-run emails</strong>
+          <small>Generated but not sent</small>
+        </article>
+        <article>
+          <span id="metricEscalated">0</span>
+          <strong>Manual reviews</strong>
+          <small>30+ day accounts protected</small>
+        </article>
+        <article>
+          <span id="metricAmount">INR 0</span>
+          <strong>Total exposure</strong>
+          <small>Outstanding portfolio value</small>
+        </article>
+      </section>
+
+      <section class="panel-section" id="queue">
+        <div class="section-heading">
+          <p class="eyebrow">Trigger Logic</p>
+          <h2>Overdue invoice queue</h2>
+        </div>
+        <div class="toolbar" aria-label="Queue controls">
+          <div>
+            <label for="stageFilter">Stage</label>
+            <select id="stageFilter">
+              <option value="all">All stages</option>
+              <option value="1">Stage 1 - Warm</option>
+              <option value="2">Stage 2 - Firm</option>
+              <option value="3">Stage 3 - Formal</option>
+              <option value="4">Stage 4 - Urgent</option>
+              <option value="legal">Manual review</option>
+            </select>
+          </div>
+          <div>
+            <label for="riskFilter">Risk</label>
+            <select id="riskFilter">
+              <option value="all">All risk levels</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Invoice</th>
+                <th>Contact</th>
+                <th>Amount</th>
+                <th>Days</th>
+                <th>Risk</th>
+                <th>Stage</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="invoiceRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel-section split" id="emails">
+        <div class="section-heading">
+          <p class="eyebrow">Approval Queue</p>
+          <h2>Generated email review</h2>
+        </div>
+        <div class="email-layout">
+          <div class="email-list" id="emailList" aria-label="Generated email list"></div>
+          <article class="email-preview" id="emailPreview" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="panel-section" id="database">
+        <div class="section-heading">
+          <p class="eyebrow">Database Layer</p>
+          <h2>SQLite-backed finance records</h2>
+        </div>
+        <div class="database-grid">
+          <article>
+            <strong>Database file</strong>
+            <span>data/creditflow.db</span>
+          </article>
+          <article>
+            <strong>Schema</strong>
+            <span>invoices, generated_emails, audit_events, users</span>
+          </article>
+          <article>
+            <strong>Run command</strong>
+            <span>python src/credit_followup_agent.py --init-db --use-db --dry-run</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel-section security" id="security">
+        <div class="section-heading">
+          <p class="eyebrow">Security Controls</p>
+          <h2>Designed for safe finance operations</h2>
+        </div>
+        <div class="security-grid">
+          <article><strong>Authentication</strong><span>Demo login models role-based access, MFA state, session timeout, and lockout after repeated failures.</span></article>
+          <article><strong>Data privacy</strong><span>Email addresses are masked in audit logs and sensitive secrets stay in environment variables.</span></article>
+          <article><strong>Prompt injection</strong><span>Structured invoice fields are escaped in the browser and deterministic templates prevent data from becoming instructions.</span></article>
+          <article><strong>Database safety</strong><span>SQLite tables use typed fields, timestamps, and auditable generated email records.</span></article>
+          <article><strong>Email governance</strong><span>Dry-run status prevents accidental sends; legal-stage accounts are flagged for human review only.</span></article>
+          <article><strong>Production hardening</strong><span>Use server-side auth, hashed passwords, HTTPS, CSRF protection, SPF, DKIM, DMARC, and RBAC approvals.</span></article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

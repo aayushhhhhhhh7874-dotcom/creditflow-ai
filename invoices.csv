@@ -1,0 +1,6 @@
+invoice_no,client_name,company,amount_due,due_date,contact_email,follow_up_count,risk_level,payment_link
+INV-2026-001,Rajesh Kapoor,Kapoor Retail Pvt Ltd,45000,2026-05-07,accounts.payable@kapoorretail.in,0,low,https://pay.creditflow.in/invoices/INV-2026-001
+INV-2026-014,Ananya Mehta,Mehta Design Studio LLP,78500,2026-04-30,finance@mehtadesignstudio.in,1,medium,https://pay.creditflow.in/invoices/INV-2026-014
+INV-2026-022,Vikram Sinha,Sinha Logistics Pvt Ltd,132000,2026-04-22,billing@sinhagroup.co.in,2,high,https://pay.creditflow.in/invoices/INV-2026-022
+INV-2026-031,Priya Nair,Nair Foods Exporters,26800,2026-04-14,payments@nairfoods.in,3,high,https://pay.creditflow.in/invoices/INV-2026-031
+INV-2026-044,Arjun Rao,Rao Infra Works Pvt Ltd,214500,2026-04-05,arjun.rao@raoinfraworks.in,4,critical,https://pay.creditflow.in/invoices/INV-2026-044
